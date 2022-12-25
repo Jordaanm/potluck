@@ -3,14 +3,12 @@ import { useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 
-import { useState } from "react";
 import UserSwitch from "../components/user-switcher";
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
   const { data: sessionData } = useSession();
-  const { data, error, isFetching } = trpc.potluck.getAllForUser.useQuery({ userId: sessionData?.user?.id});
-
+  const { data } = trpc.potluck.getAllForUser.useQuery({ userId: sessionData?.user?.id});
 
   return (
     <>
@@ -19,7 +17,7 @@ const Home: NextPage = () => {
         <meta name="description" content="Potluck.io, the easiest way to host a potluck" />
         <link rel="icon" href="/favicon.ico" />
         <style>
-          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+          {`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');`}
         </style>
 
       </Head>

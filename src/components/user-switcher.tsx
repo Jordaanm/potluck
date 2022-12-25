@@ -2,16 +2,13 @@ import { useState } from "react";
 import LoginForm from "./auth/login-form";
 import SignupForm from "./auth/signup-form";
 
-interface UserSwitchProps {
-  
-}
 
 enum UserFormMode {
   Login,
   Signup
 }
 
-export const UserSwitch = (props: UserSwitchProps) => {
+export const UserSwitch = () => {
 
   const [mode, setMode] = useState<UserFormMode>(UserFormMode.Signup);
 
