@@ -18,7 +18,6 @@ export const LoginForm = (props: LoginFormProps) => {
   });
 
   const onSubmit = useCallback(async (data: ILogin) => {
-    console.log(data);
     await signIn("credentials", { ...data, callbackUrl: "/" });
   }, []);
 

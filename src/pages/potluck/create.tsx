@@ -21,7 +21,6 @@ export const PotluckPage: NextPage = () => {
 
   const onSubmit = useCallback(
     async (data: IPotluckCreate) => {
-      console.log('createPotluck', data);
       const result = await mutateAsync(data);
       if(result.status === 201) {
         router.push("/potluck/[potluckid]", `/potluck/${result.result.potluck.id}`);

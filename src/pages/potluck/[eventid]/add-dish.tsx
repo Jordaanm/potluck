@@ -27,7 +27,6 @@ export const AddDishPage: NextPage = () => {
 
   const onSubmit = useCallback(
     async (dish: IDish) => {
-      console.log('addDish', dish);
       const result = await mutateAsync({potluckId, dish});
       if(result.status === 201) {
         router.push("/potluck/[eventid]", `/potluck/${potluckId}`);

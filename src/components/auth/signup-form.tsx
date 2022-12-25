@@ -20,7 +20,6 @@ export const SignupForm = (props: SignupProps) => {
 
   const onSubmit = useCallback(
     async (data: ISignUp) => {
-      console.log(data);
       const result = await mutateAsync(data);
       if(result.status === 201) {
         goToLogin();

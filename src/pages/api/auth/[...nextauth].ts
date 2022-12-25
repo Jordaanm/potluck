@@ -20,7 +20,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         const creds = await loginSchema.parseAsync(credentials);
-        console.log("\r\n\r\nUser\r\n====\r\n", prisma.user, "\r\n====\r\n");
+        // console.log("\r\n\r\nUser\r\n====\r\n", prisma.user, "\r\n====\r\n");
         
         const user = await prisma.user.findUnique({
           where: { email: creds.email },
@@ -46,7 +46,7 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     jwt: async ({ token, user, account }) => {
-      console.log("JWT", token, user, account)
+      // console.log("JWT", token, user, account)
       if (user) {
         token.id = user.id;
         token.email = user.email;
@@ -55,7 +55,7 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
     session: async ({ session, token, user }) => {
-      console.log("SESSION", session, "\r\n===\r\n", token, "\r\n===\r\n", user)
+      // console.log("SESSION", session, "\r\n===\r\n", token, "\r\n===\r\n", user)
       if(token && session.user) {
         session.user.email = token.email;
         session.user.name = token.name;
