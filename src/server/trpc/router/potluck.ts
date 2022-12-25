@@ -95,6 +95,7 @@ export const potluckRouter = router({
           guests: true,
         }        
       });
+      
       return {
         status: 200,
         message: "Potluck retrieved successfully",

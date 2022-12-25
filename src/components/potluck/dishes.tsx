@@ -19,12 +19,12 @@ export const Dishes = (props: DishesProps) => {
       <h2 className="text-2xl font-extrabold text-black text-opacity-75 mb-4" style={{fontFamily: 'Playfair Display'}}>
         Dishes
       </h2>
-      {dishes.length > 0 && <div className="flex flex-col">
+      {dishes?.length === 0 && <EmptyView />}
+      {dishes != null && dishes.length > 0 && <div className="flex flex-col">
         {dishes.map((dish) => (
           <DishView isHost={isHost} dish={dish} key={dish.id} />
         ))}
       </div>}
-      {dishes.length === 0 && <EmptyView />}
       {isHost && <div className="flex">
         <Link href={`/potluck/${potluck.id}/add-dish`} className="btn btn-primary rounded-3xl bg-[#cfa168] focus:bg-[#cfa168] text-white mb-4 px-8">
           Add a Dish
