@@ -44,6 +44,36 @@ export const potluckRouter = router({
         result: { potluck },
       };
     }),
+  getAllForUser: protectedProcedure
+    .input(z.object({
+      userId: z.string().optional()
+    }))
+    .query(async ({ input, ctx }) => {
+      const { userId } = input;
+      
+      if(!userId) throw new TRPCError({ code: "BAD_REQUEST", message: "User ID is required" });
+
+      const potlucks = await ctx.prisma.potluck.findMany({
+        where: {
+          OR: [
+            { hostId: userId },
+            { guests: { some: { userId } } }
+          ]
+        },
+        include: {
+          host: true,
+        } 
+      });
+
+      const hosting = potlucks.filter(x => x.hostId === userId);
+      const attending = potlucks.filter(x => x.hostId !== userId);
+
+      return {
+        status: 200,
+        message: "Potlucks retrieved successfully",
+        result: { hosting, attending },
+      };
+    }),
   get: publicProcedure
     .input(z.object({
       id: z.string()
@@ -90,7 +120,6 @@ export const potluckRouter = router({
           message: "Potluck not found",
         });
       }
-
 
       const item = await ctx.prisma.dish.create({
         data: {
