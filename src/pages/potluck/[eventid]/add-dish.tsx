@@ -42,7 +42,7 @@ export const AddDishPage: NextPage = () => {
         <meta name="description" content="Potluck.io, the easiest way to host a potluck" />
         <link rel="icon" href="/favicon.ico" />
         <style>
-          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+          {`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');`}
         </style>
       </Head>
       <main className="flex min-h-screen items-center justify-center bg-gradient-to-b from-[#dfd9d2] to-[#e0dad2] flex-col">
