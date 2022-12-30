@@ -12,7 +12,7 @@ export const potluckDishSchema = z.object({
   type: z.string(),
   quantity: z.number(),
   suggestion: z.string(),
-  assignedTo: z.string().optional()
+  attendeeId: z.string().optional()
 });
 
 export const potluckSchema = potluckCreationSchema.extend({

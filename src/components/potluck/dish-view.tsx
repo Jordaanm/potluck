@@ -18,20 +18,18 @@ export const DishView = (props: DishViewProps) => {
   const {mutateAsync: updateDishCall} = trpc.potluck.updateDish.useMutation();
 
   const updateDish = (dish: DishWithAttendee) => {
-    console.log(dish);
     updateDishCall({
       dish: {
         type: dish.type,
         quantity: dish.quantity,
         suggestion: dish.suggestion || '',
-        attendeeId: dish.attendee?.id || undefined,
+        attendeeId: dish.attendeeId || undefined,
         id,
       }
     });
   };
 
   const setField = (field: keyof DishWithAttendee) => (value: string|number) => {
-    console.log(field, value);
     updateDish({...dish, [field]: value});    
   };
 

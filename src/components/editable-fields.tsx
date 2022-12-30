@@ -147,7 +147,8 @@ export const EditableUser = (props: EditableUserProps) => {
   const { attendees } = props;
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setValue(attendees.find(g => g.id === e.target.value));
+    const user = attendees.find(attendee => attendee.id === e.target.value);
+    setValue(user);
     setIsDirty(true);
   };
 
@@ -155,7 +156,7 @@ export const EditableUser = (props: EditableUserProps) => {
     return (
       <select
         className={editViewClasses}
-        value={value?.id}
+        value={value?.id || ""}
         onChange={onChange}
         onBlur={() => {
           setIsEditing(false);
@@ -167,6 +168,7 @@ export const EditableUser = (props: EditableUserProps) => {
         {props.attendees.map(g => (
           <option key={g.id} value={g.id}>{g.name}</option>
         ))}
+        <option key="unassigned" value="">Unassigned</option>
       </select>
     );
   }
