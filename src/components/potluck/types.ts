@@ -1,13 +1,12 @@
-import type { Guest, Dish, Potluck, User } from "@prisma/client";
+import type { Dish, Potluck, User } from "@prisma/client";
 
 export type FullDish = (Dish & {
-  guest: Guest & {
-      user: User;
-  } | null;
+  attendee: User | null;
 });
 
 export type FullPotluck = (Potluck & {
   host: User;
-  guests: Guest[];
   dishes: FullDish[];
+  attendees: User[];
 });
+

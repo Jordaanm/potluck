@@ -8,6 +8,7 @@ import { potluckDishSchema } from "../../../utils/validation/potluck-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { trpc } from "../../../utils/trpc";
 import { useCallback } from "react";
+import { DishTypeSelect } from "../../../components/potluck/dish-type-select";
 
 export const AddDishPage: NextPage = () => {
   
@@ -47,7 +48,7 @@ export const AddDishPage: NextPage = () => {
       </Head>
       <main className="flex min-h-screen items-center justify-center bg-gradient-to-b from-[#dfd9d2] to-[#e0dad2] flex-col">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          <h1 className="text-5xl font-extrabold tracking-tight text-black sm:text-[5rem] text-opacity-75" style={{fontFamily: 'Playfair Display'}}>
+          <h1 className="text-5xl font-extrabold tracking-tight text-black sm:text-[5rem] text-opacity-75 font-fancy">
             Add a Dish
           </h1>        
         </div>
@@ -56,15 +57,7 @@ export const AddDishPage: NextPage = () => {
             <div className="flex flex-col gap-2">
               {formState.errors.type && <p className="text-red-500">{formState.errors.type.message}</p>}
               <label className="text-black text-opacity-75" htmlFor="type">Type</label>
-              <select className="border border-black border-opacity-25 rounded-md p-2" {...register("type")}>
-                <option value="appetizer">Appetizer</option>
-                <option value="entree">Entree</option>
-                <option value="main">Main</option>
-                <option value="side">Side</option>
-                <option value="salad">Salad</option>
-                <option value="dessert">Dessert</option>
-                <option value="drink">Drink</option>
-              </select>
+              <DishTypeSelect className="border border-black border-opacity-25 rounded-md p-2" {...register("type")} />
             </div>
             <div className="flex flex-col gap-2">
               {formState.errors.suggestion && <p className="text-red-500">{formState.errors.suggestion.message}</p>}

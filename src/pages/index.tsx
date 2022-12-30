@@ -23,20 +23,20 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-screen items-center justify-center bg-gradient-to-b from-[#dfd9d2] to-[#e0dad2] sm-flex-col-reverse lg:flex-row pl-8">
         <div className="container flex-1 flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          <h1 className="w-6/12 text-5xl font-extrabold tracking-tight text-black sm:text-[5rem] text-opacity-75" style={{fontFamily: 'Playfair Display'}}>
+          <h1 className="w-6/12 text-5xl font-extrabold tracking-tight text-black sm:text-[5rem] text-opacity-75 font-fancy">
             Potluck.io
           </h1>
-          <div className="w-6/12 my-4 text-black text-opacity-50" style={{fontFamily: 'Playfair Display'}}>
+          <div className="w-6/12 my-4 text-black text-opacity-50 font-fancy">
             <p className="text-2xl">The easiest way to host a potluck.</p>
           </div>
           <div className="flex flex-col items-center gap-2 w-full">
             { !sessionData && <UserSwitch /> }
             { sessionData && <div className="w-6/12">
-              <h3 className="text-xl text-black text-opacity-50 mb-4" style={{fontFamily: 'Playfair Display'}}>Welcome back, {sessionData.user?.name}</h3>
+              <h3 className="text-xl text-black text-opacity-50 mb-4 font-fancy">Welcome back, {sessionData.user?.name}</h3>
               {data?.status === 200 && Boolean(data.result) && (
                 <div className="flex flex-col gap-4">
                   {data.result.hosting.length > 0 && <>
-                    <p className="text-black font-extrabold text-opacity-50" style={{fontFamily: 'Playfair Display'}}>
+                    <p className="text-black font-extrabold text-opacity-50 font-fancy">
                       Potlucks You&apos;re Hosting
                     </p>
                     <div className="flex flex-col items-start">
@@ -48,7 +48,7 @@ const Home: NextPage = () => {
                     </div>
                   </>}
                   {data.result.attending.length > 0 && <>
-                    <p className="text-black font-extrabold text-opacity-50" style={{fontFamily: 'Playfair Display'}}>
+                    <p className="text-black font-extrabold text-opacity-50 font-fancy">
                       Potlucks You&apos;re Attending
                     </p>
                     <div className="flex flex-col items-start">

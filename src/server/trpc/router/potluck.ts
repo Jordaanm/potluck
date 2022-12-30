@@ -57,7 +57,7 @@ export const potluckRouter = router({
         where: {
           OR: [
             { hostId: userId },
-            { guests: { some: { userId } } }
+            {}
           ]
         },
         include: {
@@ -85,14 +85,10 @@ export const potluckRouter = router({
           host: true,
           dishes: {
             include: {
-              guest: {
-                include: {
-                  user: true,
-                }
-              },
+              attendee: true
             }
           },
-          guests: true,
+          attendees: true,
         }        
       });
       
@@ -141,5 +137,102 @@ export const potluckRouter = router({
         result: { item },
       };
     }),
+  updateDish: protectedProcedure
+    .input(z.object({
+      dish: potluckDishSchema.extend({
+        attendeeId: z.string().optional(),
+        id: z.string()
+      })
+    }))
+    .mutation(async ({ input, ctx }) => {
+      const { dish } = input;
+      const { id, type, quantity, suggestion } = dish;
 
+      const item = await ctx.prisma.dish.update({
+        where: { id },
+        data: {
+          type,
+          quantity,
+          suggestion,
+          attendee: {
+            connect: {
+              id: dish.attendeeId,
+            }
+          }
+        },
+      });
+
+      return {
+        status: 201,
+        message: "Dish updated successfully",
+        result: { item },
+      };
+    }),
+  setUserAttending: protectedProcedure
+    .input(z.object({
+      userId: z.string(),
+      potluckId: z.string(),
+      attending: z.boolean()
+    }))
+    .mutation(async ({ input, ctx }) => {
+      const { userId, potluckId, attending } = input;
+
+      const potluck = await ctx.prisma.potluck.findFirst({
+        where: { id: potluckId },
+      });
+
+      if (!potluck) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Potluck not found",
+        });
+      }
+
+      const user = await ctx.prisma.user.findFirst({
+        where: { id: userId },
+      });
+
+      if (!user) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "User not found",
+        });
+      }
+
+      if (attending) {
+        const result = await ctx.prisma.potluck.update({
+          where: { id: potluckId },
+          data: {
+            attendees: {
+              connect: {
+                id: userId,
+              }
+            }
+          },
+        });
+  
+        return {
+          status: 201,
+          message: "User attending status updated successfully",
+          result: { result },
+        };
+      } else {
+        const result = await ctx.prisma.potluck.update({
+          where: { id: potluckId },
+          data: {
+            attendees: {
+              disconnect: {
+                id: userId,
+              }
+            }
+          },
+        });
+  
+        return {
+          status: 201,
+          message: "User attending status updated successfully",
+          result: { result },
+        };
+      }
+    }),
 });

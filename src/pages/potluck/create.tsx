@@ -42,7 +42,7 @@ export const PotluckPage: NextPage = () => {
       </Head>
       <main className="flex min-h-screen items-center justify-center bg-gradient-to-b from-[#dfd9d2] to-[#e0dad2] sm-flex-col-reverse lg:flex-row">
         <div className="container flex-1 flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          <h1 className="text-5xl font-extrabold tracking-tight text-black sm:text-[5rem] text-opacity-75" style={{fontFamily: 'Playfair Display'}}>
+          <h1 className="text-5xl font-extrabold tracking-tight text-black sm:text-[5rem] text-opacity-75 font-fancy">
             Create a new Potluck
           </h1>
           <form className="flex flex-col gap-4 mt-8 w-full px-8" onSubmit={handleSubmit(onSubmit)}>

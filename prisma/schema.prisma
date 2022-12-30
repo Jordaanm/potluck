@@ -5,13 +5,18 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// datasource db {
+//   provider= "postgresql"
+//   // NOTE: When using postgresql, mysql or sqlserver, uncomment the @db.Text annotations in model Account below
+//   // Further reading:
+//   // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
+//   // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
+//   url      = env("DATABASE_URL")
+// }
+
 datasource db {
-  provider= "postgresql"
-  // NOTE: When using postgresql, mysql or sqlserver, uncomment the @db.Text annotations in model Account below
-  // Further reading:
-  // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
-  // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model Example {
@@ -27,8 +32,9 @@ model User {
   emailVerified DateTime?
   image         String?
   password      String
-  guestOf       Guest[]
-  hosting      Potluck[]
+  hosting       Potluck[] @relation(name: "PotluckHost")
+  attending     Potluck[] @relation(name: "PotluckAttendees")
+  bringing      Dish[]
 }
 
 model Potluck {
@@ -38,18 +44,9 @@ model Potluck {
   location    String
   description String
   hostId      String
-  host        User     @relation(fields: [hostId], references: [id])
-  guests      Guest[]
-  dishes       Dish[]  
-}
-
-model Guest {
-  id        String   @id @default(uuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  potluckId String
-  potluck   Potluck  @relation(fields: [potluckId], references: [id])
-  dishes     Dish[]
+  host        User     @relation(name: "PotluckHost", fields: [hostId], references: [id])
+  attendees   User[]  @relation(name:"PotluckAttendees")
+  dishes      Dish[]  
 }
 
 model Dish {
@@ -61,6 +58,6 @@ model Dish {
 
   potluckId   String
   potluck     Potluck  @relation(fields: [potluckId], references: [id])
-  guestId     String?
-  guest       Guest?    @relation(fields: [guestId], references: [id])
+  attendeeId     String?
+  attendee       User?    @relation(fields: [attendeeId], references: [id])
 }

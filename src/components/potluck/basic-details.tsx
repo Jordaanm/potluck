@@ -32,10 +32,10 @@ const Row = (props: RowProps) => {
 
   return (
     <div className="flex flex-col">
-      <p className="text-md font-semibold text-black text-opacity-50 mb-2"  style={{fontFamily: 'Playfair Display'}}>
+      <p className="text-md font-semibold text-black text-opacity-50 mb-2 font-fancy">
         {label}
       </p>
-      <p className="text-xl font-extrabold text-black text-opacity-75 mb-4" style={{fontFamily: 'Playfair Display'}}>
+      <p className="text-xl font-extrabold text-black text-opacity-75 mb-4 font-fancy">
         {value}
       </p>
     </div>

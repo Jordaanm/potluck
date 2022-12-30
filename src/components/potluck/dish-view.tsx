@@ -1,28 +1,48 @@
+import type { User } from '@prisma/client';
+import { trpc } from '../../utils/trpc';
+import { EditableDishType, EditableUser, EditableNumber, EditableText } from '../editable-fields';
 import type { FullDish } from './types';
 
-type DishWithGuest = FullDish
+type DishWithAttendee = FullDish
 
 interface DishViewProps {
-  dish: DishWithGuest;
+  dish: DishWithAttendee;
   isHost: boolean;
+  allAttendees: User[];
 }
 
 export const DishView = (props: DishViewProps) => {
   const { dish, isHost } = props;
-  const { type, quantity, suggestion, guest } = dish;
+  const { type, quantity, suggestion, id, attendee } = dish;
+
+  const {mutateAsync: updateDishCall} = trpc.potluck.updateDish.useMutation();
+
+  const updateDish = (dish: DishWithAttendee) => {
+    console.log(dish);
+    updateDishCall({
+      dish: {
+        type: dish.type,
+        quantity: dish.quantity,
+        suggestion: dish.suggestion || '',
+        attendeeId: dish.attendee?.id || undefined,
+        id,
+      }
+    });
+  };
+
+  const setField = (field: keyof DishWithAttendee) => (value: string|number) => {
+    console.log(field, value);
+    updateDish({...dish, [field]: value});    
+  };
 
   return (
     <div className="flex flex-col bg-opacity-50 bg-white rounded-2xl mb-4 p-2">
       <div className="flex flex-row font-semibold text-md text-black text-opacity-50 items-center">
-        <p className="leading-8" style={{fontFamily: 'Playfair Display'}}>
-          We want {quantity}x {type}&nbsp;
-        </p>
-        <p className="leading-8" style={{fontFamily: 'Playfair Display'}}>
-          (preferrably {suggestion}),&nbsp;
-        </p>
-        <p className="leading-8" style={{fontFamily: 'Playfair Display'}}>
-          brought by {guest?.user?.name || 'anyone'}
-        </p>
+        <p className="leading-8 font-fancy">
+          We want <EditableNumber value={quantity} onChange={setField('quantity')} />x <EditableDishType value={type} onChange={setField('type')} />,
+          preferrably <EditableText value={suggestion||''} onChange={setField('suggestion')} />,
+          brought by <EditableUser value={attendee} onChange={setField('attendeeId')} attendees={props.allAttendees} />
+        </p>        
         <button className="btn btn-primary rounded-3xl bg-[#cfa168] focus:bg-[#cfa168] text-white px-4 ml-4 p-0">
           Edit Details
         </button>
@@ -36,5 +56,6 @@ export const DishView = (props: DishViewProps) => {
     </div>
   );
 };
+
 
 export default DishView;

@@ -5,24 +5,25 @@ import type { FullPotluck } from "./types";
 interface DishesProps {
   potluck: FullPotluck | null | undefined;
   isHost: boolean;
+  userId: string | undefined;
 }
 
 export const Dishes = (props: DishesProps) => {
-  const { potluck, isHost } = props;
+  const { potluck, isHost, userId } = props;
   
   if(!potluck) return null;
 
-  const { dishes } = potluck;
+  const { dishes, attendees } = potluck;
 
   return (
     <div className="flex flex-col">
-      <h2 className="text-2xl font-extrabold text-black text-opacity-75 mb-4" style={{fontFamily: 'Playfair Display'}}>
+      <h2 className="text-2xl font-extrabold text-black text-opacity-75 mb-4 font-fancy">
         Dishes
       </h2>
       {dishes?.length === 0 && <EmptyView />}
       {dishes != null && dishes.length > 0 && <div className="flex flex-col">
         {dishes.map((dish) => (
-          <DishView isHost={isHost} dish={dish} key={dish.id} />
+          <DishView isHost={isHost} dish={dish} key={dish.id} allAttendees={attendees}/>
         ))}
       </div>}
       {isHost && <div className="flex">
@@ -37,7 +38,7 @@ export const Dishes = (props: DishesProps) => {
 
 const EmptyView = () => (
   <div className="flex flex-col">
-    <p className="text-xl font-extrabold text-black text-opacity-75 mb-4" style={{fontFamily: 'Playfair Display'}}>
+    <p className="text-xl font-extrabold text-black text-opacity-75 mb-4 font-fancy">
       No dishes yet
     </p>
   </div>
