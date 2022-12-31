@@ -36,6 +36,8 @@ export const AddDishPage: NextPage = () => {
     [mutateAsync, potluckId, router]
   );
 
+  console.log("errors", formState.errors);
+
   return (
     <>
       <Head>
@@ -57,7 +59,15 @@ export const AddDishPage: NextPage = () => {
             <div className="flex flex-col gap-2">
               {formState.errors.type && <p className="text-red-500">{formState.errors.type.message}</p>}
               <label className="text-black text-opacity-75" htmlFor="type">Type</label>
-              <DishTypeSelect className="border border-black border-opacity-25 rounded-md p-2" {...register("type")} />
+              <select className="border border-black border-opacity-25 rounded-md p-2" {...register("type")}>
+                <option value="appetizer">Appetizer</option>
+                <option value="entree">Entree</option>
+                <option value="main">Main</option>
+                <option value="side">Side</option>
+                <option value="salad">Salad</option>
+                <option value="dessert">Dessert</option>
+                <option value="drink">Drink</option>
+              </select>
             </div>
             <div className="flex flex-col gap-2">
               {formState.errors.suggestion && <p className="text-red-500">{formState.errors.suggestion.message}</p>}

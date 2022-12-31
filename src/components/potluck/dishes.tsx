@@ -16,7 +16,7 @@ export const Dishes = (props: DishesProps) => {
   const { dishes, attendees } = potluck;
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mt-4">
       <h2 className="text-2xl font-extrabold text-black text-opacity-75 mb-4 font-fancy">
         Dishes
       </h2>
@@ -38,7 +38,7 @@ export const Dishes = (props: DishesProps) => {
 
 const EmptyView = () => (
   <div className="flex flex-col">
-    <p className="text-xl font-extrabold text-black text-opacity-75 mb-4 font-fancy">
+    <p className="text-xl font-medium text-black text-opacity-75 mb-4 font-fancy">
       No dishes yet
     </p>
   </div>

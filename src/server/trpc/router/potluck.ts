@@ -168,6 +168,21 @@ export const potluckRouter = router({
         result: { item },
       };
     }),
+  removeDish: protectedProcedure
+    .input(z.object({
+      id: z.string()
+    }))
+    .mutation(async ({ input, ctx }) => {
+      const { id } = input;
+      await ctx.prisma.dish.delete({
+        where: { id },
+      });
+
+      return {
+        status: 200,
+        message: "Dish removed successfully",
+      };
+    }),
   setUserAttending: protectedProcedure
     .input(z.object({
       userId: z.string(),

@@ -45,12 +45,12 @@ export const Attendees = (props: AttendeesProps) => {
         Attendees
       </h2>
       {attendees?.length === 0 && <EmptyView />}
-      <AttendeeShare />
       {attendees != null && attendees.length > 0 && <div className="flex flex-col">
         {attendees.map((attendee) => (
           <AttendeeView attendee={attendee} key={attendee.id} />
         ))}
       </div>}
+      {isHost && <AttendeeShare />}
       <div className="flex">
         {isAttending && 
           <button className="btn btn-primary rounded-3xl bg-[#cfa168] focus:bg-[#cfa168] text-white mb-4 px-8" onClick={wontAttend}>
@@ -81,22 +81,19 @@ interface AttendeeViewProps {
 
 const AttendeeView = (props: AttendeeViewProps) => {
   const { attendee } = props;
-  const { name, email } = attendee;
+  const { name } = attendee;
 
   return (
-    <div className="flex flex-col">
-      <p className="text-xl font-extrabold text-black text-opacity-75 mb-4 font-fancy">
+    <div className="flex flex-col mt-4">
+      <p className="text-xl font-normal text-black text-opacity-75 mb-4 font-fancy">
         {name}
-      </p>
-      <p className="text-xl font-extrabold text-black text-opacity-75 mb-4 font-fancy">
-        {email}
       </p>
     </div>
   );
 };
 
 const AttendeeShare = () => (
-  <div className="flex flex-col">
+  <div className="flex flex-col mt-4">
     <p className="text-sm font-medium text-black text-opacity-75 mb-4">
       <span className="text-black text-opacity-75 font-fancy">
         Share this link with your attendees:&nbsp;
