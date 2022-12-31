@@ -44,7 +44,7 @@ export const DishView = (props: DishViewProps) => {
   };
 
   return (
-    <div className="flex flex-col bg-opacity-50 bg-white rounded-2xl mb-4 p-2 lg:flex-row">
+    <div className="flex flex-col bg-opacity-50 bg-white rounded-2xl mb-2 p-2 lg:flex-row">
       <div className="flex flex-1 flex-row font-semibold text-md text-black text-opacity-50 items-center mb-2 lg:mb-0">
         <p className="leading-8 font-fancy">
           We want <EditableNumber value={quantity} onChange={setField('quantity')} />x <EditableDishType value={type} onChange={setField('type')} />,

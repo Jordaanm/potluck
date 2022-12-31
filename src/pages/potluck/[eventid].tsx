@@ -46,13 +46,13 @@ export const PotluckPage: NextPage = () => {
           </h1>
         </div>
         <div className="flex flex-1 flex-col items-center">
-          <div className="w-11/12 md:w-6/12">
+          <div className="w-11/12 md:w-6/12 mb-8">
             <BasicDetails potluck={potluck} />
           </div>
-          <div className="w-11/12 md:w-6/12">
+          <div className="w-11/12 md:w-6/12 mb-8">
             <Attendees potluck={potluck} isHost={isHost} userId={user?.id}/>
           </div>
-          <div className="w-11/12 md:w-6/12">
+          <div className="w-11/12 md:w-6/12 mb-8">
             <Dishes potluck={potluck} isHost={isHost} userId={user?.id}/>
           </div>
         </div>

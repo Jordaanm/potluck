@@ -41,11 +41,11 @@ export const Attendees = (props: AttendeesProps) => {
 
   return (
     <div className="flex flex-col">
-      <h2 className="text-2xl font-extrabold text-black text-opacity-75 mb-4 font-fancy">
+      <h2 className="text-2xl font-extrabold text-black text-opacity-75 font-fancy mb-4">
         Attendees
       </h2>
       {attendees?.length === 0 && <EmptyView />}
-      {attendees != null && attendees.length > 0 && <div className="flex flex-col">
+      {attendees != null && attendees.length > 0 && <div className="flex flex-col mb-4">
         {attendees.map((attendee) => (
           <AttendeeView attendee={attendee} key={attendee.id} />
         ))}
@@ -68,8 +68,8 @@ export const Attendees = (props: AttendeesProps) => {
 };
 
 const EmptyView = () => (
-  <div className="flex flex-col">
-    <p className="text-xl font-extrabold text-black text-opacity-75 mb-4 font-fancy">
+  <div className="flex flex-col mb-4">
+    <p className="text-xl font-extrabold text-black text-opacity-75 font-fancy">
       No attendees yet
     </p>
   </div>
@@ -84,7 +84,7 @@ const AttendeeView = (props: AttendeeViewProps) => {
   const { name } = attendee;
 
   return (
-    <div className="flex flex-col mt-4">
+    <div className="flex flex-col mb-2">
       <p className="text-xl font-normal text-black text-opacity-75 mb-4 font-fancy">
         {name}
       </p>
@@ -93,7 +93,7 @@ const AttendeeView = (props: AttendeeViewProps) => {
 };
 
 const AttendeeShare = () => (
-  <div className="flex flex-col mt-4">
+  <div className="flex flex-col mb-2">
     <p className="text-sm font-medium text-black text-opacity-75 mb-4">
       <span className="text-black text-opacity-75 font-fancy">
         Share this link with your attendees:&nbsp;
