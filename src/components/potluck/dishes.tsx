@@ -27,7 +27,7 @@ export const Dishes = (props: DishesProps) => {
         ))}
       </div>}
       {isHost && <div className="flex">
-        <Link href={`/potluck/${potluck.id}/add-dish`} className="btn btn-primary rounded-3xl bg-[#cfa168] focus:bg-[#cfa168] text-white mb-4 px-8">
+        <Link href={`/potluck/${potluck.id}/add-dish`} className="btn btn-primary rounded-md bg-[#cfa168] focus:bg-[#cfa168] text-white mb-4 px-8">
           Add a Dish
         </Link>
       </div>}

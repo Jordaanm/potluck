@@ -41,7 +41,7 @@ const Home: NextPage = () => {
                     </p>
                     <div className="flex flex-col items-start">
                       {data.result.hosting.map((potluck) => (
-                        <Link href={`/potluck/${potluck.id}`} className="rounded-2xl bg-[#cfa168] bg-opacity-25 border-[#cfa168] focus:border-[#cfa168] border-b-2 mb-4 px-4 py-2 text-white" key={potluck.id}>
+                        <Link href={`/potluck/${potluck.id}`} className="rounded-md bg-[#cfa168] bg-opacity-25 border-[#cfa168] focus:border-[#cfa168] border-b-2 mb-4 px-4 py-2 text-white" key={potluck.id}>
                           {potluck.name}
                         </Link>
                       ))}
@@ -53,7 +53,7 @@ const Home: NextPage = () => {
                     </p>
                     <div className="flex flex-col items-start">
                       {data.result.attending.map((potluck) => (
-                        <Link href={`/potluck/${potluck.id}`} className="rounded-2xl bg-[#cfa168] bg-opacity-25 border-[#cfa168] focus:border-[#cfa168] border-b-2 mb-4 px-4 py-2 text-white" key={potluck.id}>
+                        <Link href={`/potluck/${potluck.id}`} className="rounded-md bg-[#cfa168] bg-opacity-25 border-[#cfa168] focus:border-[#cfa168] border-b-2 mb-4 px-4 py-2 text-white" key={potluck.id}>
                           {potluck.name}
                         </Link>
                       ))}
@@ -61,7 +61,7 @@ const Home: NextPage = () => {
                   </>}
                 </div>
               )}
-              <Link href="/potluck/create" className="btn btn-primary rounded-3xl bg-[#cfa168] focus:bg-[#cfa168] text-white mt-8">Create a new Potluck</Link>
+              <Link href="/potluck/create" className="btn btn-primary rounded-md bg-[#cfa168] focus:bg-[#cfa168] text-white mt-8">Create a new Potluck</Link>
             </div>}
           </div>
         </div>

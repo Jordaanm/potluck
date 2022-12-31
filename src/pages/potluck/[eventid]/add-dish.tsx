@@ -80,7 +80,7 @@ export const AddDishPage: NextPage = () => {
               <input className="border border-black border-opacity-25 rounded-md p-2" type="number" placeholder="Quantity" {...register("quantity", {valueAsNumber: true})} />
             </div>
             <div className="flex flex-col gap-2">
-              <button className="btn btn-primary rounded-3xl bg-[#cfa168] focus:bg-[#cfa168] text-white" type="submit">Add Dish</button>
+              <button className="btn btn-primary rounded-md bg-[#cfa168] focus:bg-[#cfa168] text-white" type="submit">Add Dish</button>
             </div>
           </form>
         </div>

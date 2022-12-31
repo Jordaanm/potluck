@@ -96,8 +96,8 @@ export const PotluckPage: NextPage = () => {
               {...register("location")}
             />
             <div className="modal-action">
-              <button className="btn btn-primary rounded-3xl bg-[#cfa168] focus:bg-[#cfa168] text-white" type="submit">Create</button>
-              <Link href="/" className="btn btn-secondary rounded-3xl bg-[#cfa168] focus:bg-[#cfa168] text-white">Cancel</Link>
+              <button className="btn btn-primary rounded-md bg-[#cfa168] focus:bg-[#cfa168] text-white" type="submit">Create</button>
+              <Link href="/" className="btn btn-secondary rounded-md bg-[#cfa168] focus:bg-[#cfa168] text-white">Cancel</Link>
             </div>
           </form>
         </div>

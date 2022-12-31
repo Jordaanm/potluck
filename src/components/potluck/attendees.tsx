@@ -53,12 +53,12 @@ export const Attendees = (props: AttendeesProps) => {
       {isHost && <AttendeeShare />}
       <div className="flex">
         {isAttending && 
-          <button className="btn btn-primary rounded-3xl bg-[#cfa168] focus:bg-[#cfa168] text-white mb-4 px-8" onClick={wontAttend}>
+          <button className="btn btn-primary rounded-md bg-[#cfa168] focus:bg-[#cfa168] text-white mb-4 px-8" onClick={wontAttend}>
             I am not attending
           </button>
         }
         {!isAttending && 
-          <button className="btn btn-primary rounded-3xl bg-[#cfa168] focus:bg-[#cfa168] text-white mb-4 px-8" onClick={willAttend}>
+          <button className="btn btn-primary rounded-md bg-[#cfa168] focus:bg-[#cfa168] text-white mb-4 px-8" onClick={willAttend}>
             I am attending
           </button>
         }        

@@ -44,7 +44,7 @@ export const LoginForm = (props: LoginFormProps) => {
                 <Link href="" className="link text-opacity-50 text-black text-base" onClick={goToSignup}>
                   I need to create an account
                 </Link>
-                <button type="submit" className="btn btn-secondary rounded-3xl bg-[#cfa168] text-white">
+                <button type="submit" className="btn btn-secondary rounded-md bg-[#cfa168] text-white">
                   Login
                 </button>
               </div>

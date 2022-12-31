@@ -44,6 +44,38 @@ export const potluckRouter = router({
         result: { potluck },
       };
     }),
+  destroy: protectedProcedure
+    .input(z.object({
+      id: z.string()
+    }))
+    .mutation(async ({ input, ctx }) => {
+      const { id } = input;
+      
+      const potluck = await ctx.prisma.potluck.findFirst({
+        where: { id },
+      });
+
+      if (!potluck) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Potluck not found",
+        });
+      }
+
+      //Remove all dishes in this potluck first
+      await ctx.prisma.dish.deleteMany({
+        where: { potluckId: id },
+      });
+
+      await ctx.prisma.potluck.delete({
+        where: { id },
+      });
+
+      return {
+        status: 200,
+        message: "Potluck deleted successfully",
+      };
+    }),
   getAllForUser: protectedProcedure
     .input(z.object({
       userId: z.string().optional()
