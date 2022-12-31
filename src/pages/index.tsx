@@ -21,8 +21,8 @@ const Home: NextPage = () => {
         </style>
 
       </Head>
-      <main className="flex min-h-screen items-center justify-center bg-gradient-to-b from-[#dfd9d2] to-[#e0dad2] sm-flex-col-reverse lg:flex-row pl-8">
-        <div className="container flex-1 flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+      <main className="flex min-h-screen items-center justify-center bg-gradient-to-b from-[#dfd9d2] to-[#e0dad2] flex-col-reverse lg:flex-row pl-8">
+        <div className="container flex-1 flex flex-col items-center lg:justify-center gap-12 px-4 lg:py-16 ">
           <h1 className="w-6/12 text-5xl font-extrabold tracking-tight text-black sm:text-[5rem] text-opacity-75 font-fancy">
             Potluck.io
           </h1>
@@ -65,7 +65,8 @@ const Home: NextPage = () => {
             </div>}
           </div>
         </div>
-        <div className="flex min-h-screen flex-1 flex-col items-center justify-center bg-no-repeat bg-center bg-contain" style={{backgroundImage: 'url(/potluck-splash-no-bg2.png)'}}></div>
+        <div className="flex lg:min-h-screen lg:flex-1 flex-col items-center justify-center bg-no-repeat bg-center bg-contain" style={{backgroundImage: 'url(/potluck-splash-no-bg2.png)'}}></div>
+        <div className="flex flex-1 w-full lg:hidden flex-col items-center justify-center bg-no-repeat bg-center bg-contain" style={{backgroundImage: 'url(/potluck-splash-no-bg.png)'}}></div>
       </main>
     </>
   );
